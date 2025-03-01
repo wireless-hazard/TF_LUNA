@@ -1,4 +1,3 @@
-#include "i2c_osal.hpp"
 #include "i2c_tf_luna.hpp"
 #include "tf_luna_regs_address.hpp"
 
@@ -13,11 +12,11 @@ typedef union
 
 bool lidar_t::init(void)
 {
-    bool status_ok = osal::i2c_init(this->_bus);
+    bool status_ok = osal::i2c_init(this->handler, this->_bus);
 
     if (status_ok)
     {
-        status_ok = osal::i2c_probe(this->_address);
+        status_ok = osal::i2c_probe(this->handler, this->_address);
     }
 
     return status_ok;
@@ -25,8 +24,8 @@ bool lidar_t::init(void)
 
 uint16_t lidar_t::get_distance(void)
 {
-    int32_t dist_low  = osal::i2c_read(this->_address, DIST_LOW);
-    int32_t dist_high = osal::i2c_read(this->_address, DIST_HIGH);
+    int32_t dist_low  = osal::i2c_read(this->handler, this->_address, DIST_LOW);
+    int32_t dist_high = osal::i2c_read(this->handler, this->_address, DIST_HIGH);
     distance_t distance = {.distance = 0};
 
     if ((dist_low >= 0) && (dist_high >= 0))

@@ -6,9 +6,9 @@
 
 int main()
 {
-    tf_luna::lidar_t lidar(0x10, 1);
+    tf_luna::lidar_t lidar({.address = 0x10, .bus = 0x01});
 
-    lidar.init();
+    assert(lidar.init());
     
     printf("The current distance is: %d\n", lidar.get_distance());    
 }
