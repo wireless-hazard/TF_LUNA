@@ -13,6 +13,7 @@ namespace tf_luna
         lidar_t(i2c_struct_t config) : _address{config.address}, _bus{config.bus}, handler{nullptr} {};
         bool init(void);
         uint16_t get_distance(void);
+        void deinit(void);
     private:
         uint16_t _address;
         uint8_t _bus;

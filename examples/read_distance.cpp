@@ -10,5 +10,6 @@ int main()
 
     assert(lidar.init());
     
-    printf("The current distance is: %d\n", lidar.get_distance());    
+    printf("The current distance is: %d\n", lidar.get_distance());
+    lidar.deinit();
 }

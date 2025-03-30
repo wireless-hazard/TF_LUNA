@@ -12,14 +12,20 @@ typedef union
 
 bool lidar_t::init(void)
 {
-    bool status_ok = osal::i2c_init(this->handler, this->_bus);
+    this->handler = osal::i2c_init(this->_bus);
+    bool status_ok = false;
 
-    if (status_ok)
+    if (this->handler != nullptr)
     {
         status_ok = osal::i2c_probe(this->handler, this->_address);
     }
 
     return status_ok;
+}
+
+void lidar_t::deinit(void)
+{
+    osal::i2c_deinit(this->handler);
 }
 
 uint16_t lidar_t::get_distance(void)
