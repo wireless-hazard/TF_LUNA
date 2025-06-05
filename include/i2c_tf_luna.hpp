@@ -1,7 +1,7 @@
 #ifndef I2C_TF_LUNA_H
 #define I2C_TF_LUNA_H
 
-#include "i2c_osal.hpp"
+#include "i2c_pal.hpp"
 
 namespace tf_luna
 {

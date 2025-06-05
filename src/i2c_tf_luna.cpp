@@ -12,12 +12,12 @@ typedef union
 
 bool lidar_t::init(void)
 {
-    this->handler = osal::i2c_init(this->_bus);
+    this->handler = pal::i2c_init(this->_bus);
     bool status_ok = false;
 
     if (this->handler != nullptr)
     {
-        status_ok = osal::i2c_probe(this->handler, this->_address);
+        status_ok = pal::i2c_probe(this->handler, this->_address);
     }
 
     return status_ok;
@@ -25,13 +25,13 @@ bool lidar_t::init(void)
 
 void lidar_t::deinit(void)
 {
-    osal::i2c_deinit(this->handler);
+    pal::i2c_deinit(this->handler);
 }
 
 uint16_t lidar_t::get_distance(void)
 {
-    int32_t dist_low  = osal::i2c_read(this->handler, this->_address, DIST_LOW);
-    int32_t dist_high = osal::i2c_read(this->handler, this->_address, DIST_HIGH);
+    int32_t dist_low  = pal::i2c_read(this->handler, this->_address, DIST_LOW);
+    int32_t dist_high = pal::i2c_read(this->handler, this->_address, DIST_HIGH);
     concat_t distance = {.concatenated = 0};
 
     if ((dist_low >= 0) && (dist_high >= 0))

@@ -1,0 +1,3 @@
+[submodule "Embedded_PAL"]
+	path = Embedded_PAL
+	url = https://github.com/wireless-hazard/Embedded_PAL
