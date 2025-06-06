@@ -45,8 +45,8 @@ uint16_t lidar_t::get_distance(void)
 
 uint16_t lidar_t::get_temperature(void)
 {
-    int32_t temp_low  = osal::i2c_read(this->handler, this->_address, TEMP_LOW);
-    int32_t temp_high = osal::i2c_read(this->handler, this->_address, TEMP_HIGH);
+    int32_t temp_low  = pal::i2c_read(this->handler, this->_address, TEMP_LOW);
+    int32_t temp_high = pal::i2c_read(this->handler, this->_address, TEMP_HIGH);
     concat_t temperature = {.concatenated = 0};
 
     if ((temp_low >= 0) && (temp_high >= 0))
@@ -60,8 +60,8 @@ uint16_t lidar_t::get_temperature(void)
 
 uint16_t lidar_t::get_timestamp(void)
 {
-    int32_t tick_low  = osal::i2c_read(this->handler, this->_address, TICK_LOW);
-    int32_t tick_high = osal::i2c_read(this->handler, this->_address, TICK_HIGH);
+    int32_t tick_low  = pal::i2c_read(this->handler, this->_address, TICK_LOW);
+    int32_t tick_high = pal::i2c_read(this->handler, this->_address, TICK_HIGH);
     concat_t timestamp = {.concatenated = 0};
 
     if ((tick_low >= 0) && (tick_high >= 0))
